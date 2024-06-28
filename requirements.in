@@ -2,3 +2,4 @@ openpyxl
 pyautogui
 datetime
 pydrive
+unidecode

@@ -3,21 +3,15 @@ from urllib.parse import quote
 import webbrowser
 from time import sleep
 import pyautogui
-from datetime import datetime
+from unidecode import unidecode
+import re
 
-#Função para contar a semana de acordo com o tempo:
-data_inicio=datetime(2024,5,6) #6 de maio de 2024 é o inicio da contagem
-data_hoje=datetime.today()
-delta_dias=(data_hoje-data_inicio).days #Quantidade de dias que se passaram
-delta_semanas=delta_dias //7 #Faz a divisão inteira da quantidade de dias que se passaram até o dia atual
-semana = delta_semanas%8
-
-# Contador para trocar a semana
-contador = semana+1 #Soma-se um deviado ao fato de que função anterior só considera semanas inteiras.Então por mais que um dia faça parte da terceira semana, ele seria contado como da semana 2
+BIMESTRE = 2
+SEMANA = 7
 
 # Abertura prévia do WhatsApp Web
-webbrowser.open('https://web.whatsapp.com/')
-sleep(30)  # Aguarda o usuário realizar a autenticação
+# webbrowser.open('https://web.whatsapp.com/')
+# sleep(30)  # Aguarda o usuário realizar a autenticação
 # Após a autenticação inicial, essas duas linhas podem ser comentadas, para agilizar o processo
 
 # Função que formata o numero do telefone(insere o código do país)
@@ -45,13 +39,12 @@ workbook_2 = openpyxl.load_workbook('Controle de Presença 2024.xlsx')
 página_desistentes = workbook_2['Desistências']
 
 for linha in página_desistentes.iter_rows(min_row=1):
-    nome = str(linha[0].value).upper() # Converter todas as letras maiúsculas para possibilitar comparação
-    nome_desistentes.append(nome)
-
+    nome = unidecode(str(linha[0].value).upper()) # Colocar todas as letras maiúsculas e retirar os acentos
+    nome_sem_espacos = re.sub(r'\s+', ' ', nome).strip() # Função que substitui todos os espaços duplicados por um único
+    nome_desistentes.append(nome_sem_espacos)
 
 # Lógica de contadores para atualizar o nome da planilha conforme o bimestre
-bimestre = (2 + (delta_semanas) // 8)
-nome_aba = f'{bimestre}° Bimestre (extensivo+semi)'
+nome_aba = f'{BIMESTRE}° Bimestre (extensivo+semi)'
 
 # Leitura da planilha que contém os nomes dos alunos, semanas, dias, suas faltas em cada dia e em cada semana
 workbook_3 = openpyxl.load_workbook('Controle de Presença 2024.xlsx')
@@ -73,11 +66,11 @@ for linha in página_alunos.iter_rows(min_row=4):
     cont = 0
     dias_faltas = []
     turma = linha[1].value
-    seg = linha[2 + 7 *(contador-1)].value
-    ter = linha[3 + 7 * (contador-1)].value
-    quar = linha[4 + 7 * (contador-1)].value
-    quin = linha[5 + 7 * (contador-1)].value
-    sex = linha[6 + 7 * (contador-1)].value
+    seg = linha[2 + 7 *(SEMANA-1)].value
+    ter = linha[3 + 7 * (SEMANA-1)].value
+    quar = linha[4 + 7 * (SEMANA-1)].value
+    quin = linha[5 + 7 * (SEMANA-1)].value
+    sex = linha[6 + 7 * (SEMANA-1)].value
 
     if seg == 'F':
         cont += 1
@@ -102,15 +95,15 @@ for linha in página_alunos.iter_rows(min_row=4):
 
     # Selecionar a mensagem com base no número de faltas
     if faltas == 1:
-        mensagem = f'Olá, {nome}. Você teve uma falta nessa semana ({contador}). Faltou no seguinte dia: {dias_faltados_str}. Por favor, justifique através do seguinte formulário: https://forms.gle/dg7LPGudht6XKGVv8'
+        mensagem = f'Olá, {nome}. Você teve uma falta nessa semana ({SEMANA}). Faltou no seguinte dia: {dias_faltados_str}. Por favor, justifique através do seguinte formulário: https://forms.gle/dg7LPGudht6XKGVv8'
     elif faltas == 2:
-        mensagem = f'Olá, {nome}. Estamos contatando você para dizer que tem duas faltas nessa semana ({contador}). Faltou nos seguintes dias: {dias_faltados_str}. Por favor, justifique através do seguinte formulário: https://forms.gle/dg7LPGudht6XKGVv8'
+        mensagem = f'Olá, {nome}. Estamos contatando você para dizer que tem duas faltas nessa semana ({SEMANA}). Faltou nos seguintes dias: {dias_faltados_str}. Por favor, justifique através do seguinte formulário: https://forms.gle/dg7LPGudht6XKGVv8'
     elif faltas == 3:
-        mensagem = f'Olá, {nome}. Tudo bem com você? Notamos que você teve 3 faltas nessa semana ({contador}) nos dias: {dias_faltados_str}. Explique sua situação para que compreendamos seus motivos através do seguinte formulário: https://forms.gle/dg7LPGudht6XKGVv8'
+        mensagem = f'Olá, {nome}. Tudo bem com você? Notamos que você teve 3 faltas nessa semana ({SEMANA}) nos dias: {dias_faltados_str}. Explique sua situação para que compreendamos seus motivos através do seguinte formulário: https://forms.gle/dg7LPGudht6XKGVv8'
     elif faltas == 4:
-        mensagem = f'Olá, {nome}. Tudo bem com você? Então, percebemos que você teve 4 faltas nessa semana ({contador}) nos dias: {dias_faltados_str}. Explique para nós sua situação para que possamos compreender suas causas e talvez ajudá-lo(a) através do seguinte formulário: https://forms.gle/dg7LPGudht6XKGVv8'
+        mensagem = f'Olá, {nome}. Tudo bem com você? Então, percebemos que você teve 4 faltas nessa semana ({SEMANA}) nos dias: {dias_faltados_str}. Explique para nós sua situação para que possamos compreender suas causas e talvez ajudá-lo(a) através do seguinte formulário: https://forms.gle/dg7LPGudht6XKGVv8'
     elif faltas == 5:
-        mensagem = f'Olá, {nome}. Tudo bem com você? Estamos enviando essa mensagem pois percebemos que você faltou a semana ({contador}) inteira. Caso possamos fazer alguma coisa para ajudar, gostaríamos de saber como está o seu dia a dia e se está tendo algum problema para frequentar as aulas. Deixe sua resposta no seguinte formulário: https://forms.gle/dg7LPGudht6XKGVv8'
+        mensagem = f'Olá, {nome}. Tudo bem com você? Estamos enviando essa mensagem pois percebemos que você faltou a semana ({SEMANA}) inteira. Caso possamos fazer alguma coisa para ajudar, gostaríamos de saber como está o seu dia a dia e se está tendo algum problema para frequentar as aulas. Deixe sua resposta no seguinte formulário: https://forms.gle/dg7LPGudht6XKGVv8'
     else:
         continue
     #Função erro para filtrar os numeros e nomes dos alunos para os quais a mensagem não conseguiu ser enviada para,posteriormente, tentar o reenvio.
@@ -126,6 +119,7 @@ for linha in página_alunos.iter_rows(min_row=4):
         # Envio da mensagem
         pyautogui.hotkey('enter')
         sleep(3)
+        # Fechar guia do WhatsApp
         pyautogui.hotkey('ctrl', 'w')
         sleep(3)
 
