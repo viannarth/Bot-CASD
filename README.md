@@ -50,7 +50,7 @@
    ```
 
 
-## Primeira utilização do código
+## Primeira utilização do código para download da planilha
 1. **Inserir ID da planilha**: no Google Drive, acesse a planilha que deseja baixar (você não precisa ser o proprietário da planilha) e, no URL, identifique o ID da planilha.
    Exemplo: para a URL **`https://docs.google.com/spreadsheets/d/1A2B3C4D5E6F7G8H9I0J1K2L3M4N5O6P7Q8R9S0T1U2V/edit`**, o ID é **`1A2B3C4D5E6F7G8H9I0J1K2L3M4N5O6P7Q8R9S0T1U2V`**.
   
@@ -69,3 +69,11 @@
    - Verifique as configurações de OAuth no Google Cloud Console.
    - Verifique se o ID da planilha está correto.
    - Certifique-se de que você tem permissão para acessar o arquivo no Google Drive.
+  
+
+## Utilização do bot
+Após o download da planilha com o nome `Controle de Presença 2024.xlsx` na pasta do script, basta rodar o script do `bot.py`:
+```python
+python bot.py
+```
+**Nota**: Na primeira utilização, haverá um período de tempo de 30 s para login inicial do usuário no WhatsApp Web, caso não tenha feito antes. Após o login inicial, pode-se comentar as linhas 19 e 20 do código para retirar esse tempo inicial e agilizar o processo. O comentário pode ser feito ao se inserier `#` no início de cada linha ou ao se selecionarem as linhas e pressionar `ctrl`+`/`
