@@ -60,11 +60,11 @@
    ```
    
 3. **Autenticação pela web**: Ao rodar o script, você será redirecionado para uma tela de login com sua Conta Google para autorize o acesso à API do Google Drive.
-   OBS.: Caso o Google sinalize que o app não foi verificado, prossiga em "Advanced" (ou "Avançado") e "Go to `nome do app` (unsafe)" (ou "Ir para `nome do app` (não seguro)) para continuar.
+   **OBS.**: Caso o Google sinalize que o app não foi verificado, prossiga em "Advanced" (ou "Avançado") e "Go to `nome do app` (unsafe)" (ou "Ir para `nome do app` (não seguro)) para continuar.
    
-4. **Verificação**: Se tudo estiver configurado corretamente, você verá a mensagem "O download foi realizado com sucesso" no terminal e o arquivo Controle de Presença 2024.xlsx será baixado na mesma pasta do script.
+5. **Verificação**: Se tudo estiver configurado corretamente, você verá a mensagem "O download foi realizado com sucesso" no terminal e o arquivo Controle de Presença 2024.xlsx será baixado na mesma pasta do script.
    
-5. **Possíveis erros**: Caso o procedimento dê errado, haverá uma mensagem de erro no terminal. Avalie-a e tente corrigir a partir dela. Em geral, atente-se para os seguintes detalhes:
+6. **Possíveis erros**: Caso o procedimento dê errado, haverá uma mensagem de erro no terminal. Avalie-a e tente corrigir a partir dela. Em geral, atente-se para os seguintes detalhes:
    - Verifique se o arquivo client_secrets.json está corretamente configurado e localizado na mesma pasta do script.
    - Verifique as configurações de OAuth no Google Cloud Console.
    - Verifique se o ID da planilha está correto.
