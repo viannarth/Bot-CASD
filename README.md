@@ -72,7 +72,12 @@
   
 
 ## Utilização do bot
-Após o download da planilha com o nome `Controle de Presença 2024.xlsx` na pasta do script, basta rodar o script do `bot.py`:
+Após o download da planilha com o nome `Controle de Presença 2024.xlsx` na pasta do script, resta a breve configuração inicial do script `bot.py`. Antes de rodar o script, modifique a semana e o bimestre atuais no início do código, nas linhas `8` e `9`:
+```python
+BIMESTRE = # Insira o bimestre atual aqui
+SEMANA = # Insira a semana atual aqui
+```
+Depois, basta o rodar o script do `´bot.py`, digitando a seguinte linha de código no terminal:
 ```python
 python bot.py
 ```
