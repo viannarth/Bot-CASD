@@ -11,7 +11,7 @@ SEMANA = # Insira a semana atual aqui
 
 # Abertura prévia do WhatsApp Web
 webbrowser.open('https://web.whatsapp.com/')
-sleep(30)  # Aguarda o usuário realizar a autenticação
+sleep(60)  # Aguarda o usuário realizar a autenticação
 # Após a autenticação inicial, essas duas linhas podem ser comentadas, para agilizar o processo
 
 # Função que formata o numero do telefone(insere o código do país)
