@@ -38,11 +38,12 @@
    
 4. Abra o terminal na pasta criada. Isso pode ser feita ao clicar com o botão direito sobre a pasta e clicar em "Open in Terminal" (ou "Abrir no Terminal") ou semelhantes.
    
-5. (Opcional) Antes de adicionar as bibliotecas, recomenda-se a criação de um virtual environment para evitar conflitos de versões das dependências com outros projetos. Isso pode ser feito pelas seguintes linhas de código no terminal:
+5. *(Opcional)* Antes de adicionar as bibliotecas, recomenda-se a criação de um *virtual environment* para evitar conflitos de versões das dependências com outros projetos. Isso pode ser feito pelas seguintes linhas de código no terminal:
    ```python
    python -m venv env # env pode ser substituído pelo nome à sua escolha
    source env/bin/activate # No Windows, use `env\Scripts\activate`
    ```
+   Você verá o nome do seu ambiente virtual aparecer no prompt de comando, indicando que ele está ativado.
    
 6. No terminal, digite a seguinte linha de código:
    ```python
@@ -72,7 +73,7 @@
   
 
 ## Utilização do bot
-Após o download da planilha com o nome `Controle de Presença 2024.xlsx` na pasta do script, resta a breve configuração inicial do script `bot.py`. Antes de rodar o script, modifique a semana e o bimestre atuais no início do código, nas linhas `8` e `9`:
+Após o download da planilha com o nome `Controle de Presença 2024.xlsx` na pasta do script, resta a breve configuração inicial do script `bot.py`. Antes de rodar o script, modifique a semana e o bimestre atuais no início do código, nas linhas 8 e 9:
 ```python
 BIMESTRE = # Insira o bimestre atual aqui
 SEMANA = # Insira a semana atual aqui
