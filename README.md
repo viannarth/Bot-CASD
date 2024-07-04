@@ -78,7 +78,7 @@ Após o download da planilha com o nome `Controle de Presença 2024.xlsx` na pas
 BIMESTRE = # Insira o bimestre atual aqui
 SEMANA = # Insira a semana atual aqui
 ```
-Depois, basta o rodar o script do `´bot.py`, digitando a seguinte linha de código no terminal:
+Depois, basta o rodar o script do `bot.py`, digitando a seguinte linha de código no terminal:
 ```python
 python bot.py
 ```
