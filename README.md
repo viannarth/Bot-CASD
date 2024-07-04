@@ -82,4 +82,4 @@ Depois, basta o rodar o script do `bot.py`, digitando a seguinte linha de códig
 ```python
 python bot.py
 ```
-**Nota**: Na primeira utilização, haverá um período de tempo de 30 s para login inicial do usuário no WhatsApp Web, caso não tenha feito antes. Após o login inicial, pode-se comentar as linhas 19 e 20 do código para retirar esse tempo inicial e agilizar o processo. O comentário pode ser feito ao se inserir `#` no início de cada linha ou ao se selecionarem as linhas e pressionar `ctrl`+`/`.
+**Nota**: Na primeira utilização, haverá um período de tempo de 60 s para login inicial do usuário no WhatsApp Web, caso não tenha feito antes. Após o login inicial, pode-se comentar as linhas 19 e 20 do código para retirar esse tempo inicial e agilizar o processo. O comentário pode ser feito ao se inserir `#` no início de cada linha ou ao se selecionarem as linhas e pressionar `ctrl`+`/`.
